@@ -1,5 +1,3 @@
-[TOC]
-
 ## installation
 
 - check `Create Associations` for .py files on...keep `Add launchers dir to the PATH` off...my understanding is that if this were to be checked on it would allow for the launching of PyCharm from the Command Prompt...this is something you're not really every going to do, however, there's no harm in checking it on
@@ -35,12 +33,9 @@
     - `File > Settings > Tools > Shared Indexes`
     - `Don't download, use local indexes`
 
-
 ## symbols
 
 Different operating systems have different symbols for the same keys.  [This](http://xahlee.info/comp/unicode_computing_symbols.html) is a great place to look for equivalencies along with copy/pasting unicode characters for various symbols.
-
-It's a stinker that you really have to zoom in on these buggers.
 
 ### Mac specific
 
@@ -121,15 +116,14 @@ It's a stinker that you really have to zoom in on these buggers.
 
 ## helpers
 
-- when selecting a autocompletion value an `↵` would place the value at the cursor while a `⇥` will overwrite the word under the cursor
+- when selecting an autocompletion value an `↵` would place the value at the cursor while a `⇥` will overwrite the word under the cursor
 - when writing a normal string you can put in the `{` character then an object to automatically switch to a f-string
 
 ## working with multiple repos
 
 Currently, I have a PyCharm project called `mag` with a VE in the project directory.  Nothing shocking.  I've cloned `magpy`, `pyutils`, `pacsqr` and `magpy_flask` into the project directory and pip installed them.  How do you handle git with multiple repos in one project?  This took a while to figure out but the answer is simple.  In the `VCS` tab, hover over the `>>` icon in the lower left corner then the `Group by` icon, unselect `Directory` then select `Repository`.  Each repo will now be shown.
-<div class=figure style="width: 600px">
-  <p><img src="../docs/vcs_group.png" width="400"></p>
-</div>
+
+![](vcs_group.png)
 
 ## Error while opening due to already running process
 
@@ -182,14 +176,11 @@ I want to note here that we have named 1) a remote virtual environment, 2) a dep
 
 - copy the local VE's absolute path
 - `Tools` > `Deployment` > `Configuration`
-    - I've found that on the Pi 5, it'll appear that PyCharm has frozen, just wait...don't know how long.
+    - I've found that on the Pi 5, it'll appear that PyCharm has frozen, just wait.
 
 ##### Connections tab
 
-<div class=figure style="width: 1600px">
-  <img src="../docs/connections.png">
-  <p>A deployment name is one-to-one between a local PyCharm project and remote deployment directory.  However, the <b>SSH configuration</b> can be used for many projects since it's one-to-one with a remote machine.</p>  
-</div>
+![](connections.png)
 
 - Right click and `Rename` the deployment name in the upper left pane using the convention `<hostname>:<remote deployment directory name>`.
 - Right click and `Use as default` the deployment name that you want to associate the project to.
@@ -197,18 +188,13 @@ I want to note here that we have named 1) a remote virtual environment, 2) a dep
 
 ##### Mappings tab
 
-<div class=figure style="width: 1600px">
-  <img src="docs/mappings.png">
-  <p>Local paths need to be absolute, while remote paths are relative to the <b>Root path</b> that was set in the <b>Connections</b> tab.</p>
-</div>
+![](mappings.png)
 
 - If the *Root path* in the *Connections* tab was set to the remote deployment directory, the *Deployment path* here can be set to `/` since it's relative to the *Root path*.
 
 ##### Excluded Paths tab
 
-<div class=figure style="width: 1600px">
-  <img src="docs/excluded_paths.png">
-</div><br>
+![](excluded_paths.png)
 
 - Add a local path and paste the absolute path to the local VE that you'd copied.
 - Add a remote path for the remote VE.  If the *Root path* in the *Connections* tab was set to the remote deployment directory, you can simply use the directory name of the remote VE.
@@ -234,31 +220,3 @@ I want to note here that we have named 1) a remote virtual environment, 2) a dep
 - Don't alter a remote file since it doesn't autosave.  Instead, right click the remote file and `Download`.  It'll show up in your local project directory.  After working on the file, upload it and delete locally.
 - A default deployment name can be selected by right clicking on in the Deployment Configuration tool.  The current deployment name shows at the bottom middle of the IDE's window.
 
-## RDW
-
-Use `Microsoft SQL Server(jTds)` when making the data source.
-
-### General tab
-
-- host: `UHRDWDBSPR2.umhs.med.umich.edu`
-- authentication: `Domain credentials`
-- domain: `UMHS`
-- user: `rosbrian`
-- password: <password>
-- database: `RDW_Views`
-- url: jdbc:jtds:sqlserver://UHRDWDBSPR2.umhs.med.umich.edu/RDW_Views
-
-### SSH/SSL tab
-
-- check `Use SSL`
-- mode: `Require`
-
-### Advanced tab
-
-- DOMAIN: UMHS
-- USENTLMV2: true
-- SSL: require
-- encrypt: Mandatory  (type this one in)
-    - manually add this one by scrolling to the bottom of the list of variabled
-- trustServerCertificate: true  (type this one in)
-    - manually add this one by scrolling to the bottom of the list of variabled
